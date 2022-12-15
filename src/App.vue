@@ -4,6 +4,7 @@
       :viewState="viewState"
       @click="nothing"
       @view-state-change="updateViewState"
+      @getCursor="({isDragging}) => (isDragging ? 'grabbing' : (isHovering ? 'pointer' : 'grab'))"
       class="deck-class">
     <div id="map" ref="map"/>
   </VueDeckgl>
@@ -21,6 +22,7 @@ export default {
   },
   data() {
     return {
+      isHovering: false,
       pathData: [
         {log: 7.686736, lat: 45.054847},
         {log: 7.685089, lat: 45.071217},
@@ -65,7 +67,10 @@ export default {
         pitch: viewState.pitch
       });
     },
-    nothing: function() {}
+    nothing: function() {},
+    printClick: function() {
+      console.log("click!!");
+    }
   },
   computed: {
     layers() {
@@ -83,6 +88,9 @@ export default {
             getSize: () => 4,
             sizeScale: 10,
             getColor: [150, 123, 220],
+            pickable: true,
+            onClick: () => this.printClick(),
+            onHover: () => (this.isHovering = true)
           })];
       }
     }

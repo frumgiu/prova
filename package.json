@@ -19,7 +19,7 @@
     "vue": "2.7.13",
     "jquery": "1.9.1",
     "core-js": "3.6.5",
-    "mapbox-gl": "2.9.2",
+    "mapbox-gl": "2.11.1",
     "material-icons": "1.11.4",
 
     "vue-deck.gl": "2.0.0"
